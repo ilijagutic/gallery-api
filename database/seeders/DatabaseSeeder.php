@@ -23,8 +23,11 @@ class DatabaseSeeder extends Seeder
         // $this->call(
         //     [UserSeeder::class]
         // );
+        // $this->call(
+        //     [GallerySeeder::class]
+        // );
         $this->call(
-            [GallerySeeder::class]
+            [ImageSeeder::class]
         );
     }
 }
