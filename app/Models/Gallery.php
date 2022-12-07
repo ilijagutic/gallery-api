@@ -14,4 +14,12 @@ class Gallery extends Model
         'description',
         'user_id',
     ];
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
