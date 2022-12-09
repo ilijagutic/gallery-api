@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('image_url');
             $table->integer('order');
-            $table->foreignId('gallery_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('galleries_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
