@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GalleriesController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,13 +21,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('guest')->group(function(){
+Route::get('/galleries', [GalleriesController::class, 'index']);
+
+
+Route::middleware('guest')->group(function () {
     Route::post('register', [AuthController::class, 'register']);
     Route::post('login', [AuthController::class, 'login']);
-
 });
-
-Route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
-    Route::post('refresh',[AuthController::class, 'refresh']);
+    Route::post('/create', [GalleriesController::class, 'store']);
+    Route::get('/my-galleries', [GalleriesController::class, 'myGalleries']);
+    Route::get('/authors/{user_id}', [UserController::class, 'userGalleries']);
+    Route::get('/galleries/{gallery}', [GalleriesController::class, 'show']);
+    Route::post('/edit/{gallery}', [GalleriesController::class, 'update']);
+    Route::post('/delete/{gallery}', [GalleriesController::class, 'destroy']);
 });

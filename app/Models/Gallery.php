@@ -8,11 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Gallery extends Model
 {
     use HasFactory;
-
-    protected $filable = [
+    protected $fillable = [
         'name',
         'description',
-        'user_id',
     ];
     public function images()
     {
